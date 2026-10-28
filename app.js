@@ -3,7 +3,7 @@
 
   // Noms proposés par défaut — modifiez cette liste librement.
   const DEFAULT_NAMES = [
-    'Lucien', 'Shazir', 'Jo', 'Owen', 'Clem', 'Thib', 'Gui G', 'Gui L', 'Sacha', 'Max', 'Elias'
+    'Lucien', 'Shaz', 'Jo', 'Owen', 'Clem', 'Thib', 'Gui G', 'Gui L', 'Sacha', 'Max', 'Elias'
   ];
 
   const PALETTE = [
