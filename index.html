@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roue de la chance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1><span class="logo" aria-hidden="true"></span>Roue de la chance</h1>
+  </header>
+
+  <main class="layout">
+    <section class="wheel-area">
+      <div class="wheel-wrap" id="wheelWrap">
+        <div class="pointer" id="pointer" aria-hidden="true">
+          <svg viewBox="0 0 40 48"><path d="M20 46 L4 10 Q2 4 8 3 L32 3 Q38 4 36 10 Z"/></svg>
+        </div>
+        <canvas id="wheel" aria-label="Roue de la chance"></canvas>
+        <button class="spin-btn" id="spinBtn" type="button">Tourner</button>
+      </div>
+      <div class="current" id="current" aria-live="polite"></div>
+      <div class="teambar" id="teambar">
+        <div class="team-slots" id="teamSlots"></div>
+        <button class="ghost sm" id="teamReset" type="button">Réinitialiser l'équipe</button>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <div class="card list-card">
+        <div class="card-head">
+          <h2>Participants <span class="badge" id="count">0</span></h2>
+          <div class="head-actions">
+            <button class="ghost sm" id="allBtn" type="button">Tout</button>
+            <button class="ghost sm" id="noneBtn" type="button">Aucun</button>
+            <button class="ghost sm" id="shuffleBtn" type="button">Mélanger</button>
+          </div>
+        </div>
+        <form id="addForm" class="add-form" autocomplete="off">
+          <input id="addInput" type="text" placeholder="Ajouter (ex : Paul, Zoé)…" maxlength="200">
+          <button type="submit" class="primary">Ajouter</button>
+        </form>
+        <ul class="list" id="list"></ul>
+      </div>
+
+      <div class="card">
+        <h2>Options</h2>
+        <div class="option">
+          <div class="row">
+            <label for="duration">Durée de rotation</label>
+            <output id="durationOut" for="duration">6 s</output>
+          </div>
+          <input type="range" id="duration" min="2" max="20" step="1" value="6">
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="teamOpt" checked>
+          <span class="track"></span>
+          Mode équipe CS2
+        </label>
+        <div class="option team-size" id="teamSizeOpt">
+          <div class="row">
+            <label for="teamSize">Joueurs par équipe</label>
+            <output id="teamSizeOut" for="teamSize">5</output>
+          </div>
+          <input type="range" id="teamSize" min="2" max="10" step="1" value="5">
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="multiOpt">
+          <span class="track"></span>
+          Entrées multiples (même personne plusieurs fois)
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="soundOpt" checked>
+          <span class="track"></span>
+          Sons
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="removeOpt">
+          <span class="track"></span>
+          Retirer automatiquement le gagnant
+        </label>
+        <button class="ghost sm reset" id="resetBtn" type="button">Restaurer la liste par défaut</button>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="winnerName">
+      <p class="eyebrow" id="eyebrow">Et le gagnant est…</p>
+      <h3 class="winner" id="winnerName"></h3>
+      <div class="modal-actions">
+        <button class="ghost" id="removeBtn" type="button">Retirer de la roue</button>
+        <button class="primary" id="closeBtn" type="button">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="match" id="match" aria-hidden="true">
+    <div class="match-panel" role="dialog" aria-modal="true" aria-labelledby="matchTitle">
+      <h2 class="match-title" id="matchTitle">Votre match est prêt !</h2>
+      <div class="match-sub" id="matchSub">Counter-Strike 2</div>
+      <div class="match-slots" id="matchSlots"></div>
+      <div class="match-count" id="matchCount"></div>
+      <div class="match-actions">
+        <button class="match-btn ghost-green" id="matchNew" type="button">Nouveau tirage</button>
+        <button class="match-btn" id="matchClose" type="button">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
